@@ -8,8 +8,8 @@
     "clean": "rimraf dist",
     "lint": "eslint src",
     "test": "jest",
-    "ci-test": "jest --watch",
-    "test-watch": "jest",
+    "ci-test": "jest",
+    "test-watch": "jest --watch",
     "watch": "webpack --watch --mode development"
   },
   "devDependencies": {
