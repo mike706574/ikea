@@ -2,7 +2,7 @@
   "name": "ikea-alpha",
   "version": "0.0.3",
   "description": "Table support library.",
-  "main": "lib/ikea-alpha.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "webpack --mode production",
     "clean": "rimraf dist",
