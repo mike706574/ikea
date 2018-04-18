@@ -1,0 +1,44 @@
+{
+  "name": "ikea-alpha",
+  "version": "0.0.2",
+  "description": "Table support library.",
+  "main": "lib/ikea-alpha.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "clean": "rimraf dist",
+    "lint": "eslint src",
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "watch": "webpack --watch --mode development"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "22.4.3",
+    "babel-loader": "7.1.4",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "eslint": "4.19.1",
+    "eslint-loader": "2.0.0",
+    "eslint-plugin-jest": "21.15.0",
+    "jest": "22.4.3",
+    "jest-cli": "22.4.3",
+    "rimraf": "2.6.2",
+    "webpack": "4.5.0",
+    "webpack-cli": "2.0.14"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mike706574/ikea-js.git"
+  },
+  "author": "Michael Easter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mike706574/ikea-js/issues"
+  },
+  "homepage": "https://github.com/mike706574/ikea",
+  "dependencies": {
+    "lodash.get": "4.4.2"
+  }
+}
