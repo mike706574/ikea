@@ -1,6 +1,6 @@
 {
   "name": "ikea-alpha",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Table support library.",
   "main": "lib/ikea-alpha.js",
   "scripts": {
