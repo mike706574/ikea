@@ -16,10 +16,10 @@ The first argument, `params`, is a set of parameters that drive how the data set
 
 ```javascript
 {sortColumn: "name",
-sortDescending: true,
-filterValue: "do",
-pageNumber: 1,
-pageSize: 5}
+ sortDescending: true,
+ filterValue: "do",
+ pageNumber: 1,
+ pageSize: 5}
 ```
 
 These are optional - so, leave out `filterValue to skip filtering, `sortColumn` to skip sorting, or `pageNumber` to skip pagination, or use whatever combination you need.
