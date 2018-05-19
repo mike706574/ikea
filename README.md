@@ -28,7 +28,7 @@ There are three groups of `params`:
 2) `filterValue` for filteringto skip filtering
 3) `pageNumber` and `pageSize` for pagination
 
-Each group is optional, so use any combination to fit your needs - for example, leave out `filterValue` if you don't need your items to be filtered.
+Each group is optional, so use any combination to fit your needs - for example, leave out `filterValue` if you don't need your items to be filtered or `pageNumber` and `pageSize` if pagination isn't needed.
 
 The second argument to `prepare`, `items`, is the set of items - something like this:
 
@@ -59,7 +59,7 @@ With these examples of `params` and `items`, `prepare` would return this:
 
 ### change
 
-There are a few standalone functions for manipulating a set of items: `changeFilter`, `changePageSize`, `changePage`, and `changeSort`.
+There are a few standalone functions for manipulating `params`: `changeFilter`, `changePageSize`, `changePage`, and `changeSort`.
 
 `change` is a combination of all of these. `change` takes 2 arguments: `change` and `params`.
 
