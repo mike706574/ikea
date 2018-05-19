@@ -6,13 +6,9 @@ A library for preparing tabular data for display.
 
 ## Overview
 
-### prepare
+In Javascript applications, oftentimes items that are displayed on a page in a list or a table need to be sorted, filtered, and paginated. With that, the parameters controlling those operations need to change, too. I've found myself writing the same code for these situations more than a few times, so this library attempts to provide some sort of common solution. 
 
-There are a few standalone functions for manipulating a set of items: `sort`, `exactFilter`, `filter`, and `paginate`.
-
-`prepare` is a combination of `sort`, `filter`, and `paginate` into a single function. It takes 2 arguments: `params` and `items`.
-
-The first argument, `params`, is a set of parameters that drive how the data set will be displayed. Here's an example:
+Here's an example of the set of parameters that drive which items will be displayed, which we'll call `params`:
 
 ```javascript
 {sortColumn: "name",
@@ -28,9 +24,30 @@ There are three groups of `params`:
 2) `filterValue` for filteringto skip filtering
 3) `pageNumber` and `pageSize` for pagination
 
-Each group is optional, so use any combination to fit your needs - for example, leave out `filterValue` if you don't need your items to be filtered or `pageNumber` and `pageSize` if pagination isn't needed.
+Each group is optional, so use any combination to fit your needs. For example, leave out `filterValue` if you don't need your items to be filtered:
 
-The second argument to `prepare`, `items`, is the set of items - something like this:
+```javascript
+{sortColumn: "name",
+ sortDescending: true,
+ pageNumber: 1,
+ pageSize: 5}
+```
+
+Or `pageNumber` and `pageSize` if pagination isn't needed:
+
+```javascript
+{sortColumn: "name",
+ sortDescending: true,
+ filterValue: "do"}
+```
+
+### prepare
+
+There are a few standalone functions for manipulating a set of items: `sort`, `exactFilter`, `filter`, and `paginate`.
+
+`prepare` is a combination of `sort`, `filter`, and `paginate` into a single function. It takes 2 arguments: `params` and `items`.
+
+`params` is the same parameters as described above, while `items` is an array of items, which are objects:
 
 ```javascript
 [{id: "1", name: "frog"},
@@ -72,7 +89,7 @@ There are a few standalone functions for manipulating `params`: `changeFilter`, 
 {kind: "pageSize", value: 10}
 ```
 
-`params` is the same set of parameters from before.
+`params` is the same set of parameters describe above.
 
 The return value is a the set of parameters after applying the change.
 
