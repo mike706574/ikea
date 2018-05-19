@@ -21,7 +21,7 @@ Here's an example of the set of parameters that drive which items will be displa
 There are three groups of `params`:
 
 1) `sortColumn` and `sortDescending` for sorting
-2) `filterValue` for filteringto skip filtering
+2) `filterValue` for filtering
 3) `pageNumber` and `pageSize` for pagination
 
 Each group is optional, so use any combination to fit your needs. For example, leave out `filterValue` if you don't need your items to be filtered:
