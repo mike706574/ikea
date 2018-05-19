@@ -12,7 +12,7 @@ There are a few standalone functions for manipulating a set of items: `sort`, `e
 
 `prepare` is a combination of `sort`, `filter`, and `paginate` into a single function. It takes 2 arguments: `params` and `items`.
 
-The first argument, `params`, is a set of parameters that drive how the data set will be displayed. It would look something like this:
+The first argument, `params`, is a set of parameters that drive how the data set will be displayed. Here's an example:
 
 ```javascript
 {sortColumn: "name",
@@ -22,9 +22,15 @@ The first argument, `params`, is a set of parameters that drive how the data set
  pageSize: 5}
 ```
 
-These are optional - so, leave out `filterValue to skip filtering, `sortColumn` to skip sorting, or `pageNumber` to skip pagination, or use whatever combination you need.
+There are three groups of `params`:
 
-The second argument, `items`, is the set of items - something like this:
+1) `sortColumn` and `sortDescending` for sorting
+2) `filterValue` for filteringto skip filtering
+3) `pageNumber` and `pageSize` for pagination
+
+Each group is optional, so use any combination to fit your needs - for example, leave out `filterValue` if you don't need your items to be filtered.
+
+The second argument to `prepare`, `items`, is the set of items - something like this:
 
 ```javascript
 [{id: "1", name: "frog"},
