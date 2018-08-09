@@ -1,4 +1,4 @@
-import {change, prepare, sort} from "./index";
+import {isPageNumberValid, countPages, change, prepare, sort} from "./index";
 
 const columns = [{id: "id",
                   label: "ID",
@@ -23,6 +23,23 @@ const animals = [{id: "1", name: "frog"},
                  {id: "10", name: "zebra"},
                  {id: "11", name: "rhino"},
                  {id: "12", name: "hippo"}];
+
+test("counting pages", () => {
+  expect(countPages({pageSize: 3}, [])).toEqual(1);
+  expect(countPages({pageSize: 3}, [1])).toEqual(1);
+  expect(countPages({pageSize: 3}, [1, 2, 3])).toEqual(1);
+  expect(countPages({pageSize: 3}, [1, 2, 3, 4])).toEqual(2);
+  expect(countPages({pageSize: 3}, [1, 2, 3, 4, 5])).toEqual(2);
+  expect(countPages({pageSize: 3}, [1, 2, 3, 4, 5, 6])).toEqual(2);
+  expect(countPages({pageSize: 3}, [1, 2, 3, 4, 5, 6, 7])).toEqual(3);
+});
+
+test("page number validation", () => {
+  expect(isPageNumberValid({pageNumber: 0, pageSize: 3}, [])).toEqual(false);
+  expect(isPageNumberValid({pageNumber: 2, pageSize: 3}, [])).toEqual(false);
+  expect(isPageNumberValid({pageNumber: 1, pageSize: 3}, [1, 2, 3])).toEqual(true);
+  expect(isPageNumberValid({pageNumber: 2, pageSize: 3}, [1, 2, 3])).toEqual(false);
+});
 
 test("paging", () => {
   const params = {columns, pageNumber: 1, pageSize: 5};
