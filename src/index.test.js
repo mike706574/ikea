@@ -1,4 +1,4 @@
-import {isPageNumberValid, countPages, change, prepare, sort} from "./index";
+import {isPageNumberValid, isPageNumberInvalid, countPages, change, prepare, sort} from "./index";
 
 const columns = [{id: "id",
                   label: "ID",
@@ -39,6 +39,11 @@ test("page number validation", () => {
   expect(isPageNumberValid({pageNumber: 2, pageSize: 3}, [])).toEqual(false);
   expect(isPageNumberValid({pageNumber: 1, pageSize: 3}, [1, 2, 3])).toEqual(true);
   expect(isPageNumberValid({pageNumber: 2, pageSize: 3}, [1, 2, 3])).toEqual(false);
+
+  expect(isPageNumberInvalid({pageNumber: 0, pageSize: 3}, [])).toEqual(true);
+  expect(isPageNumberInvalid({pageNumber: 2, pageSize: 3}, [])).toEqual(true);
+  expect(isPageNumberInvalid({pageNumber: 1, pageSize: 3}, [1, 2, 3])).toEqual(false);
+  expect(isPageNumberInvalid({pageNumber: 2, pageSize: 3}, [1, 2, 3])).toEqual(true);
 });
 
 test("paging", () => {

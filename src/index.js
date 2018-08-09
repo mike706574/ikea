@@ -99,6 +99,10 @@ export function isPageNumberValid(params, items) {
   return params.pageNumber > 0 && params.pageNumber <= countPages(params, items);
 }
 
+export function isPageNumberInvalid(params, items) {
+  return !isPageNumberValid(params, items);
+}
+
 export function paginate({pageNumber, pageSize}, items) {
   const firstIndex = pageSize * (pageNumber - 1);
   return items.slice(firstIndex, firstIndex + pageSize);
