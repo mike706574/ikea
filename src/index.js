@@ -91,7 +91,7 @@ export function filter({columns, filterValue}, items) {
   });
 }
 
-export function countPages({pageNumber, pageSize}, items) {
+export function countPages({pageSize}, items) {
   return Math.max(Math.ceil(items.length / pageSize), 1);
 }
 
