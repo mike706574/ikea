@@ -238,3 +238,97 @@ test("sort", () => {
                           pageNumber: 1,
                           pageSize: 10});
 });
+
+const selectableItems = [{id: "1"},
+                         {id: "2"},
+                         {id: "3"},
+                         {id: "4"},
+                         {id: "5"},
+                         {id: "6"},
+                         {id: "7"},
+                         {id: "8"}];
+
+test("select", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set()};
+
+  let result = change({kind: "select", id: "2"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set(["2"])});
+});
+
+test("select all", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set()};
+
+  let result = change({kind: "selectAll"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set(selectableItems.map(item => item.id))});
+});
+
+test("deselect all", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set(selectableItems)};
+
+  let result = change({kind: "deselectAll"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set()});
+});
+
+test("select all displayed", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set()};
+
+  let result = change({kind: "selectAllDisplayed"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set(["1", "2", "3", "4", "5"])});
+});
+
+test("deselect all displayed", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set(selectableItems.map(item => item.id))};
+
+  let result = change({kind: "deselectAllDisplayed"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set(["6", "7", "8"])});
+});

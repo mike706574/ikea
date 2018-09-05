@@ -152,22 +152,63 @@ export function changeSort(sortColumn, params) {
   return {...params, sortColumn, sortDescending};
 }
 
+export function select(change, params) {
+  const selected = new Set(params.selected);
+  const {id} = change;
+
+  if(selected.has(id)) {
+    selected.delete(id);
+  }
+  else {
+    selected.add(id);
+  }
+
+  return {...params, selected};;
+}
+
+export function selectAll(change, params) {
+  const {items, selectionId} = params;
+  const selected = new Set(params.selected);
+  items.forEach(item => selected.add(item[selectionId]));
+  return {...params, selected};
+}
+
+export function deselectAll(change, params) {
+  const selected = new Set(params.selected);
+  selected.clear();
+  return {...params, selected};
+}
+
+export function selectAllDisplayed(change, params) {
+  const {items, selectionId} = params;
+  const selected = new Set(params.selected);
+  prepare(params, items)
+    .items
+    .forEach(item => selected.add(item[selectionId]));
+  return {...params, selected};
+}
+
+export function deselectAllDisplayed(change, params) {
+  const {items, selectionId} = params;
+  const selected = new Set(params.selected);
+  prepare(params, items)
+    .items
+    .forEach(item => selected.delete(item[selectionId]));
+  return {...params, selected};
+}
+
 export function change(change, params) {
   const {kind, value} = change;
   switch(kind) {
-    case "filter": {
-      return changeFilter(value, params);
-    }
-    case "pageSize": {
-      return changePageSize(value, params);
-    }
-    case "sort": {
-      return changeSort(value, params);
-    }
-    case "page": {
-      return changePage(change.value, params);
-    }
-    default:
-      throw new Error("Invalid change type: " + kind);
+    case "filter": return changeFilter(value, params);
+    case "pageSize": return changePageSize(value, params);
+    case "sort": return changeSort(value, params);
+    case "page": return changePage(change.value, params);
+    case "select": return select(change, params);
+    case "selectAll": return selectAll(change, params);
+    case "deselectAll": return deselectAll(change, params);
+    case "selectAllDisplayed": return selectAllDisplayed(change, params);
+    case "deselectAllDisplayed": return deselectAllDisplayed(change, params);
+    default: throw new Error("Invalid change type: " + kind);
   }
 }

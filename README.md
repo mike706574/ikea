@@ -6,7 +6,7 @@ A library for preparing tabular data for display.
 
 ## Overview
 
-In Javascript applications, oftentimes items that are displayed on a page in a list or a table need to be sorted, filtered, and paginated. With that, the parameters controlling those operations need to change, too. I've found myself writing the same code for these situations more than a few times, so this library attempts to provide some sort of common solution. 
+In Javascript applications, oftentimes items that are displayed on a page in a list or a table need to be sorted, filtered, and paginated. With that, the parameters controlling those operations need to change, too. I've found myself writing the same code for these situations more than a few times, so this library attempts to provide some sort of common solution.
 
 Here's an example of the set of parameters that drive which items will be displayed, which we'll call `params`:
 
@@ -18,11 +18,12 @@ Here's an example of the set of parameters that drive which items will be displa
  pageSize: 5}
 ```
 
-There are three groups of `params`:
+There are four groups of `params`:
 
 1) `sortColumn` and `sortDescending` for sorting
 2) `filterValue` for filtering
 3) `pageNumber` and `pageSize` for pagination
+3) `selected` and `selectionId` for selection
 
 Each group is optional, so use any combination to fit your needs. For example, leave out `filterValue` if you don't need your items to be filtered:
 
@@ -87,6 +88,7 @@ There are a few standalone functions for manipulating `params`: `changeFilter`, 
 {kind: "page", value: 2}
 {kind: "filter", value: "d"}
 {kind: "pageSize", value: 10}
+{kind: "select", value: "0"}
 ```
 
 `params` is the same set of parameters describe above.
