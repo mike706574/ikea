@@ -15,7 +15,9 @@ Here's an example of the set of parameters that drive which items will be displa
  sortDescending: true,
  filterValue: "do",
  pageNumber: 1,
- pageSize: 5}
+ pageSize: 5,
+ selectionId: "id",
+ selected: new Set()}
 ```
 
 There are four groups of `params`:
@@ -88,7 +90,7 @@ There are a few standalone functions for manipulating `params`: `changeFilter`, 
 {kind: "page", value: 2}
 {kind: "filter", value: "d"}
 {kind: "pageSize", value: 10}
-{kind: "select", value: "0"}
+{kind: "toggleSelection", value: "0"}
 ```
 
 `params` is the same set of parameters describe above.

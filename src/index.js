@@ -154,13 +154,27 @@ export function changeSort(sortColumn, params) {
 
 export function select(change, params) {
   const selected = new Set(params.selected);
-  const {id} = change;
+  const {value} = change;
+  selected.add(value);
+  return {...params, selected};;
+}
 
-  if(selected.has(id)) {
-    selected.delete(id);
+export function deselect(change, params) {
+  const selected = new Set(params.selected);
+  const {value} = change;
+  selected.delete(value);
+  return {...params, selected};;
+}
+
+export function toggleSelection(change, params) {
+  const selected = new Set(params.selected);
+  const {value} = change;
+
+  if(selected.has(value)) {
+    selected.delete(value);
   }
   else {
-    selected.add(id);
+    selected.add(value);
   }
 
   return {...params, selected};;
@@ -205,6 +219,8 @@ export function change(change, params) {
     case "sort": return changeSort(value, params);
     case "page": return changePage(change.value, params);
     case "select": return select(change, params);
+    case "deselect": return deselect(change, params);
+    case "toggleSelection": return toggleSelection(change, params);
     case "selectAll": return selectAll(change, params);
     case "deselectAll": return deselectAll(change, params);
     case "selectAllDisplayed": return selectAllDisplayed(change, params);

@@ -248,6 +248,7 @@ const selectableItems = [{id: "1"},
                          {id: "7"},
                          {id: "8"}];
 
+
 test("select", () => {
   const params = {sortColumn: null,
                   sortDescending: true,
@@ -258,11 +259,96 @@ test("select", () => {
                   items: selectableItems,
                   selected: new Set()};
 
-  let result = change({kind: "select", id: "2"},
+  let result = change({kind: "select", value: "2"},
                       params);
 
   expect(result).toEqual({...params,
                           selected: new Set(["2"])});
+});
+
+test("select again", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set(["2"])};
+
+  let result = change({kind: "select", value: "2"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set(["2"])});
+});
+
+test("deselect", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set(["2"])};
+
+  let result = change({kind: "deselect", value: "2"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set()});
+});
+
+test("deselect again", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set()};
+
+  let result = change({kind: "deselect", value: "2"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set()});
+});
+
+test("toggling select", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set()};
+
+  let result = change({kind: "toggleSelection", value: "2"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set(["2"])});
+});
+
+test("toggling deselect", () => {
+  const params = {sortColumn: null,
+                  sortDescending: true,
+                  filterValue: "",
+                  pageNumber: 1,
+                  pageSize: 5,
+                  selectionId: "id",
+                  items: selectableItems,
+                  selected: new Set(["2"])};
+
+  let result = change({kind: "toggleSelection", value: "2"},
+                      params);
+
+  expect(result).toEqual({...params,
+                          selected: new Set()});
 });
 
 test("select all", () => {
